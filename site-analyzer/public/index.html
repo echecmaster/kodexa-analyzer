@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Site Analyzer — Analyseur de sites web</title>
+  <meta name="description" content="Analysez gratuitement n'importe quel site web : SEO, performance, sécurité, accessibilité et plus encore." />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--                HEADER                   -->
+  <!-- ═══════════════════════════════════════ -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-diamond">◆</span>
+        <span class="logo-text">SITE<span class="logo-accent">ANALYZER</span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--              PAGE ACCUEIL               -->
+  <!-- ═══════════════════════════════════════ -->
+  <main id="page-home" class="page active">
+
+    <section class="hero">
+      <div class="hero-inner">
+
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Analyse complète & gratuite
+        </div>
+
+        <h1 class="hero-title">
+          Analysez n'importe<br />
+          quel <span class="text-accent">site web</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          SEO · Performance · Sécurité · Mobile · Accessibilité · Technologies
+        </p>
+
+        <div class="search-container">
+          <div class="search-box">
+            <span class="search-icon">◆</span>
+            <input
+              type="url"
+              id="url-input"
+              class="search-input"
+              placeholder="https://example.com"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <button id="btn-analyze" class="btn-analyze">
+              <span class="btn-text">Analyser</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+          <div id="input-error" class="input-error hidden">
+            ⚠ Veuillez entrer une URL valide (ex: https://example.com)
+          </div>
+        </div>
+
+        <div class="hero-features">
+          <div class="feature-item">
+            <span class="feature-icon">🔍</span>
+            <span>SEO</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🚀</span>
+            <span>Performance</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔒</span>
+            <span>Sécurité</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📱</span>
+            <span>Mobile</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">♿</span>
+            <span>Accessibilité</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🛠️</span>
+            <span>Technologies</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--            PAGE CHARGEMENT              -->
+  <!-- ═══════════════════════════════════════ -->
+  <main id="page-loading" class="page hidden">
+    <div class="loading-container">
+
+      <div class="loading-logo">
+        <span class="logo-diamond pulse">◆</span>
+      </div>
+
+      <h2 class="loading-title">Analyse en cours...</h2>
+      <p id="loading-url" class="loading-url"></p>
+
+      <div class="loading-bar-container">
+        <div id="loading-bar" class="loading-bar"></div>
+      </div>
+
+      <div class="loading-steps">
+        <div class="loading-step" id="step-1">
+          <span class="step-icon">⟳</span>
+          <span>Récupération de la page</span>
+        </div>
+        <div class="loading-step" id="step-2">
+          <span class="step-icon">⟳</span>
+          <span>Analyse SEO</span>
+        </div>
+        <div class="loading-step" id="step-3">
+          <span class="step-icon">⟳</span>
+          <span>Analyse des performances</span>
+        </div>
+        <div class="loading-step" id="step-4">
+          <span class="step-icon">⟳</span>
+          <span>Vérification sécurité</span>
+        </div>
+        <div class="loading-step" id="step-5">
+          <span class="step-icon">⟳</span>
+          <span>Analyse accessibilité</span>
+        </div>
+        <div class="loading-step" id="step-6">
+          <span class="step-icon">⟳</span>
+          <span>Détection des technologies</span>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--            PAGE RÉSULTATS               -->
+  <!-- ═══════════════════════════════════════ -->
+  <main id="page-results" class="page hidden">
+    <div class="results-container">
+
+      <!-- Barre d'actions -->
+      <div class="results-topbar">
+        <button id="btn-new-analysis" class="btn-secondary">
+          ← Nouvelle analyse
+        </button>
+        <button id="btn-download-pdf" class="btn-primary">
+          📥 Télécharger PDF
+        </button>
+      </div>
+
+      <!-- En-tête du rapport -->
+      <div class="report-header">
+        <div class="report-meta">
+          <span class="report-label">Analyse de</span>
+          <span id="report-url" class="report-url"></span>
+          <span id="report-date" class="report-date"></span>
+        </div>
+      </div>
+
+      <!-- Score global -->
+      <div class="global-score-section">
+        <div class="global-score-card">
+          <div class="score-circle-container">
+            <svg class="score-circle" viewBox="0 0 200 200">
+              <circle class="score-bg" cx="100" cy="100" r="85" />
+              <circle id="score-progress" class="score-fill" cx="100" cy="100" r="85" />
+            </svg>
+            <div class="score-center">
+              <span id="global-score-number" class="score-number">0</span>
+              <span class="score-total">/100</span>
+              <span id="global-score-label" class="score-label-text"></span>
+            </div>
+          </div>
+          <div class="score-description">
+            <h2 class="score-title">Score Global</h2>
+            <p id="score-summary" class="score-summary"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scores par catégorie -->
+      <div class="categories-grid">
+
+        <div class="category-card" id="cat-seo">
+          <div class="cat-header">
+            <span class="cat-icon">🔍</span>
+            <span class="cat-name">SEO</span>
+          </div>
+          <div class="cat-score-bar">
+            <div class="cat-bar-fill" id="bar-seo"></div>
+          </div>
+          <span class="cat-score-number" id="score-seo">0/100</span>
+        </div>
+
+        <div class="category-card" id="cat-performance">
+          <div class="cat-header">
+            <span class="cat-icon">🚀</span>
+            <span class="cat-name">Performance</span>
+          </div>
+          <div class="cat-score-bar">
+            <div class="cat-bar-fill" id="bar-performance"></div>
+          </div>
+          <span class="cat-score-number" id="score-performance">0/100</span>
+        </div>
+
+        <div class="category-card" id="cat-security">
+          <div class="cat-header">
+            <span class="cat-icon">🔒</span>
+            <span class="cat-name">Sécurité</span>
+          </div>
+          <div class="cat-score-bar">
+            <div class="cat-bar-fill" id="bar-security"></div>
+          </div>
+          <span class="cat-score-number" id="score-security">0/100</span>
+        </div>
+
+        <div class="category-card" id="cat-mobile">
+          <div class="cat-header">
+            <span class="cat-icon">📱</span>
+            <span class="cat-name">Mobile</span>
+          </div>
+          <div class="cat-score-bar">
+            <div class="cat-bar-fill" id="bar-mobile"></div>
+          </div>
+          <span class="cat-score-number" id="score-mobile">0/100</span>
+        </div>
+
+        <div class="category-card" id="cat-accessibility">
+          <div class="cat-header">
+            <span class="cat-icon">♿</span>
+            <span class="cat-name">Accessibilité</span>
+          </div>
+          <div class="cat-score-bar">
+            <div class="cat-bar-fill" id="bar-accessibility"></div>
+          </div>
+          <span class="cat-score-number" id="score-accessibility">0/100</span>
+        </div>
+
+      </div>
+
+      <!-- Divider -->
+      <div class="section-divider">
+        <span class="divider-line"></span>
+        <span class="divider-text">Rapport Détaillé</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- Points forts -->
+      <div class="report-section" id="section-strengths">
+        <div class="section-header">
+          <h3 class="section-title">
+            <span class="section-icon success">✅</span>
+            Points Forts
+            <span id="strengths-count" class="section-count success-count"></span>
+          </h3>
+        </div>
+        <div id="strengths-list" class="items-list"></div>
+      </div>
+
+      <!-- Points faibles -->
+      <div class="report-section" id="section-weaknesses">
+        <div class="section-header">
+          <h3 class="section-title">
+            <span class="section-icon error">❌</span>
+            Points Faibles
+            <span id="weaknesses-count" class="section-count error-count"></span>
+          </h3>
+        </div>
+        <div id="weaknesses-list" class="items-list"></div>
+      </div>
+
+      <!-- Avertissements -->
+      <div class="report-section" id="section-warnings">
+        <div class="section-header">
+          <h3 class="section-title">
+            <span class="section-icon warning">⚠️</span>
+            Avertissements
+            <span id="warnings-count" class="section-count warning-count"></span>
+          </h3>
+        </div>
+        <div id="warnings-list" class="items-list"></div>
+      </div>
+
+      <!-- Technologies détectées -->
+      <div class="report-section" id="section-technologies">
+        <div class="section-header">
+          <h3 class="section-title">
+            <span class="section-icon">🛠️</span>
+            Technologies Détectées
+          </h3>
+        </div>
+        <div id="technologies-list" class="tech-grid"></div>
+      </div>
+
+      <!-- Bouton PDF bas de page -->
+      <div class="pdf-bottom">
+        <button id="btn-download-pdf-2" class="btn-primary btn-large">
+          📥 Télécharger le Rapport PDF
+        </button>
+        <p class="pdf-note">Aucune donnée n'est stockée · Rapport généré localement</p>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ═══════════════════════════════════════ -->
+  <!--               FOOTER                    -->
+  <!-- ═══════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <span class="logo-diamond">◆</span>
+      <span>SITE ANALYZER</span>
+      <span class="footer-sep">·</span>
+      <span>Gratuit · Open Source · Aucune donnée stockée</span>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="app.js"></script>
+
+</body>
+</html>

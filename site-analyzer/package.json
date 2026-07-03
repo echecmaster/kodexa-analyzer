@@ -1,0 +1,12 @@
+{
+  "name": "site-analyzer",
+  "version": "1.0.0",
+  "description": "Analyseur de sites web complet",
+  "dependencies": {
+    "cheerio": "^1.0.0",
+    "node-fetch": "^2.7.0"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^2.0.0"
+  }
+}
